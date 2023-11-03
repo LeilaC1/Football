@@ -11,6 +11,12 @@ const selectDropdown = document.getElementById("selectDropdown");
 
 
 window.onload = function () {
+    const teamsForm = document.getElementById("teamsForm"); 
+    teamsForm.onsubmit = function(event) {
+      event.preventDefault(); 
+      onSelectTeamBtnClicked();
+      return false; 
+    };
     
     const selectTeamBtn = document.getElementById("selectBtn");
     selectTeamBtn.onclick = onSelectTeamBtnClicked;
@@ -42,8 +48,14 @@ function onSelectTeamBtnClicked(){
 
 function initTeamsDropdown(){
 
-    for(let team of teams){
-        let theOption = new Option(team.name, team.code); 
-        selectDropdown.appendChild(theOption);
-    }
+    const selectDropdown = document.getElementById("selectDropdown");
+
+  const selectOption = new Option("Select a team", "");
+  selectDropdown.appendChild(selectOption);
+
+  for (let team of teams) {
+    const theOption = new Option(team.name, team.code);
+    selectDropdown.appendChild(theOption);
+  }
 }
+
